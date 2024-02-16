@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>{{ stats.player.name }}</h1>
+<div mat-dialog-content>
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="player-card-image"></div>
+      <mat-card-title>{{ playerStats.player.name }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="playerStats.icon" alt="Player Icon" />
+    <mat-card-content>
+      <p>Total Raids: {{ playerStats.totalRaids }}</p>
+      <p>Raid Participation: {{ playerStats.raidParticipation }}</p>
+      <p>Average Time: {{ playerStats.avgTime }}</p>
+      <p>Average Position: {{ playerStats.avgPosition }}</p>
+      <p>Snipe Attempts: {{ playerStats.snipeAttempts }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="close()">Close</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

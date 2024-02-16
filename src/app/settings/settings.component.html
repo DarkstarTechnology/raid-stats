@@ -1,0 +1,72 @@
+<form [formGroup]="settingsForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="settings-card">
+    <mat-card-header>
+      <mat-card-title>Processor Settings</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-card>
+            <mat-card-content>
+              <div class="slider-label-container">
+                <label>Raids to Process</label>
+                <label>{{ raidsSlider.value }}</label>
+              </div>
+              <mat-slider min="0" max="100" step="1" showTickMarks>
+                <input matSliderThumb #raidsSlider />
+              </mat-slider>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col">
+          <mat-card>
+            <mat-card-content>
+              <div class="slider-label-container">
+                <label>Raid Start Timeout</label>
+                <label>{{ timeoutSlider.value }}s</label>
+              </div>
+              <mat-slider min="5" max="50" step="5" showTickMarks>
+                <input matSliderThumb #timeoutSlider />
+              </mat-slider>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field >
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="rangePicker">
+              <input matStartDate placeholder="Start date" (dateChange)="addEvent('start', $event)"/>
+              <input matEndDate placeholder="End date" (dateChange)="addEvent('end', $event)"/>
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="rangePicker"
+            ></mat-datepicker-toggle>
+            <mat-date-range-picker #rangePicker>
+              <mat-date-range-picker-actions>
+                <button mat-button matDateRangePickerCancel>Cancel</button>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  matDateRangePickerApply
+                >
+                  Apply
+                </button>
+              </mat-date-range-picker-actions>
+            </mat-date-range-picker>
+          </mat-form-field>
+        </div>
+       
+      </div>
+      
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+<router-outlet name="allianceOutlet"></router-outlet>
